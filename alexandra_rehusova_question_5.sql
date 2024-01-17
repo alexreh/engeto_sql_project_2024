@@ -45,6 +45,10 @@ JOIN v_ar_gdp_comparison gc
 	ON pca.`year` = gc.`year` 
 ;
 
+SELECT 
+	*
+FROM t_ar_changes_same_yr csy
+;
 
 
 CREATE OR REPLACE TABLE t_ar_changes_next_yr AS
