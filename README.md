@@ -34,7 +34,7 @@ Date_from hodnoty v tabulce czechia_price bylo třeba převést na rok pomocí f
 
 Tabulka czechia_payroll obsahovala data za roky 2000-2021, tabulka czechia_price za období 2006-2018 a tabulka economies za 1960-2020. Tudíž srovnatelné období bylo 2006-2018. Z toho důvodu jsem při sestavování tabulky primary_final spojila view v_ar_prices_comparison s view v_ar_salaries_comparison pomocí INNER JOIN, abych nemusela odfiltrovat data mimo roky 2006-2018.
 
-V otázce 5 jsem vypočetla korelační koeficienty a koeficienty determinace a SELECT na sumarizaci výsledků trval příliš dloho (obsahoval několik JOINů a výpočet koeficientu determinace r^2. Pro zrychlení jsem se rozhodla vytvořit tabulky t_ar_changes_same_yr (obsahující % meziroční změny HDP, cen a mezd ve stejném roce) a t_ar_changes_next_yr (obsahující % meziroční změny HDP v daném roce a % meziroční změny cen a příjmů v následujícím roce). Taky jsem k zobrazení výsledných koeficientů použila UNION ALL místo JOIN. Časové období pro analýzu byly roky 2007-2018 v otázce 5, poněvadž % změny cen za rok 2006 neexistovaly.
+V otázce 5 jsem vypočetla korelační koeficienty a koeficienty determinace a SELECT na sumarizaci výsledků trval příliš dlouho (obsahoval několik JOINů a výpočet koeficientu determinace r^2. Pro zrychlení jsem se rozhodla vytvořit tabulky t_ar_changes_same_yr (obsahující % meziroční změny HDP, cen a mezd ve stejném roce) a t_ar_changes_next_yr (obsahující % meziroční změny HDP v daném roce a % meziroční změny cen a příjmů v následujícím roce). Taky jsem k zobrazení výsledných koeficientů použila UNION ALL místo JOIN. Časové období pro analýzu byly roky 2007-2018 v otázce 5, poněvadž % změny cen za rok 2006 neexistovaly.
 
 # Popis dat
 
@@ -42,7 +42,7 @@ V otázce 5 jsem vypočetla korelační koeficienty a koeficienty determinace a 
 
 - year integer(4)
 - avg_price double (2 desetinné místa)
-- category varchar(50)
+- category varchar(50) 
 - pct_change_price double (2 desetinné místa)
 - avg_salary decimal (2 desetinné místa)
 - industry varchar(255)
@@ -83,3 +83,4 @@ Odpověd je ano. Výsledek lze vyčíst z tabulky t_ar_changes_same_yr, kde vid�
 
 Tabulka t_ar_changes_same_yr je přehledem % změn cen potravin (pct_change_price_yr0), mezd (pct_change_salary_yr0) a HDP (pct_change_gdp_yr0). Yr0 znamená, že se jedná o % změny zaznamenané ve stejném roce. Tabulka t_ar_changes_next_yr ukazuje % změn cen potravin (pct_change_price_yr1), mezd (pct_change_salary_yr1) a HDP (pct_change_gdp_yr0). Změny HDP jsou ve sledovaném roce (yr0) a změny cen a mezd v následujícím roku (yr1).
 
+Zavěrečný SELECT je sumarizací korelačních (value = r) a determinačních koeficientů (value-squared = r^2). Sloupec effect obsahuje informaci, zda-li se jedná o vliv HDP v daném roce (same year) nebo v roce následujícím (next year). Sloupec coefficient ukazuje, k čemu se vážou koeficienty. Buďto k vztahu HDP a cen potravin (GDP price) nebo HDP a příjmů (GDP salary). 
