@@ -6,9 +6,9 @@ CREATE OR REPLACE TABLE t_alexandra_rehusova_project_sql_secondary_final AS
 SELECT 
 	e.`year` ,
 	c.country,
-	round(e.GDP) AS GDP,
+	ROUND(e.GDP) AS GDP,
 	e.gini,
-	round(e.taxes, 1) AS taxes,
+	ROUND(e.taxes, 1) AS taxes,
 	e.population 
 FROM countries c
 JOIN economies e

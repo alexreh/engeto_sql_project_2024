@@ -6,7 +6,7 @@
 
 SELECT
 	category,
-	round(avg(pct_change_price), 2) AS 'pct_change_price'
+	ROUND(AVG(pct_change_price), 2) AS 'pct_change_price'
 FROM v_ar_prices_comparison pc 
 WHERE pct_change_price IS NOT NULL
 GROUP BY category

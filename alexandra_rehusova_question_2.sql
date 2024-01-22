@@ -8,7 +8,7 @@ SELECT
 	`year`,
 	category,
 	industry,
-	round(avg_salary / avg_price) AS affordable_units
+	ROUND(avg_salary / avg_price) AS affordable_units
 FROM t_alexandra_rehusova_project_sql_primary_final pf
 WHERE `year`  IN (2006, 2018)
 	AND industry IS NOT NULL

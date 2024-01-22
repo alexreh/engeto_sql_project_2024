@@ -6,10 +6,10 @@
 
 SELECT
 	`year`,
-	round(avg(pct_change_price), 2) AS pct_change_prices,
-	round(avg(pct_change_salary), 2) AS pct_change_salaries,
+	ROUND(AVG(pct_change_price), 2) AS pct_change_prices,
+	ROUND(AVG(pct_change_salary), 2) AS pct_change_salaries,
 	CASE
-		WHEN abs(round(avg(pct_change_price), 2) - round(avg(pct_change_salary), 2)) > 10 THEN 'yes'
+		WHEN ABS(ROUND(AVG(pct_change_price), 2) - ROUND(AVG(pct_change_salary), 2)) > 10 THEN 'yes'
 		ELSE 'no'
 	END AS diff_higher_10_percent
 FROM t_alexandra_rehusova_project_sql_primary_final pf

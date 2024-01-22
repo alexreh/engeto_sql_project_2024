@@ -31,10 +31,11 @@ ORDER BY industry, `year`
 
 SELECT 
 	`year`,
-	count(1) AS industries_declined
+	COUNT(1) AS industries_declined
 FROM v_ar_salaries_trend st
 WHERE salary_trend = 'decrease'
-GROUP BY `year`;
+GROUP BY `year`
+;
 
 SELECT 
 	`year`,
@@ -43,4 +44,5 @@ SELECT
 FROM v_ar_salaries_trend st 
 WHERE salary_trend = 'decrease'
 ORDER BY pct_change_salary, `year` 
-LIMIT 5;
+LIMIT 5
+;
